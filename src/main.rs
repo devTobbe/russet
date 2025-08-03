@@ -1,4 +1,4 @@
-use std::{io::{self, Error}, path::Path};
+use std::{fs::File, io::{self, Error}, path::Path};
 
 fn main() {
     println!("Hello, world!");
@@ -14,4 +14,13 @@ fn read_file(file_path: &str) -> Result<String, Error> {
 
 
     std::fs::read_to_string(file_path)
+}
+
+fn write_file(file_path: &str, contents: &str) {
+
+    if !Path::new(file_path).exists(){
+        let _ = File::create(file_path);
+    }
+
+    std::fs::write(file_path, contents).expect("Cannot write to file")
 }
