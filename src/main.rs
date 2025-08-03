@@ -1,5 +1,25 @@
 use std::{fs::File, io::{self, Error}, path::Path};
 
+#[derive(Debug)]
+struct Palette {
+    name : String,
+    base03: String,
+    base02: String,
+    base01: String,
+    base00: String,
+    base1: String,
+    base2: String,
+    base3: String,
+    yellow: String,
+    orange: String,
+    red: String,
+    magenta: String,
+    violet: String,
+    blue: String,
+    cyan: String,
+    green: String,
+}
+
 fn main() {
     println!("Hello, world!");
 }
