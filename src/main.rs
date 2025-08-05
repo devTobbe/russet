@@ -5,6 +5,8 @@ use std::{
     path::Path,
 };
 
+use regex::Regex;
+
 #[derive(Debug)]
 struct Palette {
     name: String,
@@ -65,6 +67,8 @@ fn main() {
             ("crust".to_string(), "#11111b".to_string()),
         ]),
     };
+
+    //replace_colors(solarized, catppuccin);
 }
 
 fn read_file(file_path: &str) -> Result<String, Error> {
@@ -89,5 +93,19 @@ fn write_file(file_path: &str, contents: &str) {
 }
 
 fn replace_colors(from_palette: Palette, to_palette: Palette, content: String) -> String {
-    todo!()
+    let mut result = content;
+
+    for (name, hex) in &from_palette.colors {
+        // TODO: Iterate through colors, create regex and replace color. Check if the color exists?
+        for (to_name, to_hex) in &to_palette.colors {
+            if name == to_name {
+                let str = format!("(?i){}", regex::escape(hex));
+                let re = Regex::new(&str).unwrap();
+                result = re.replace_all(&result, "p").into_owned();
+
+                println!("Replaced: {name}{hex} →  {to_hex}");
+            }
+        }
+    }
+    result
 }
