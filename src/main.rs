@@ -58,7 +58,8 @@ fn main() {
         ]),
     };
 
-    let content = String::from("[colors]
+    let content = String::from(
+        "[colors]
 base03 = #11111b
 base02 = #181825
 base01 = #313244
@@ -76,7 +77,8 @@ violet   = #cba6f7
 blue     = #89b4fa
 cyan     = #94e2d5
 green    = #a6e3a1
-");
+",
+    );
 
     let new = replace_colors(catppuccin, solarized, content);
 
