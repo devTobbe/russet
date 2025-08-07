@@ -1,3 +1,5 @@
+mod command;
+
 use std::{
     collections::HashMap,
     fs::File,
