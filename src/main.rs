@@ -112,7 +112,6 @@ fn replace_colors(from_palette: Palette, to_palette: Palette, content: String) -
     let mut result = content;
 
     for (name, hex) in &from_palette.colors {
-        // TODO: Iterate through colors, create regex and replace color. Check if the color exists?
         for (to_name, to_hex) in &to_palette.colors {
             if name == to_name {
                 let str = format!("(?i){}", regex::escape(hex));
