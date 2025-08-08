@@ -101,6 +101,7 @@ fn main() {
     //    let new = replace_colors(catppuccin, solarized, content);
 }
 
+// TODO: Refactor to own module
 fn read_file(file_path: &str) -> Result<String, Error> {
     let path = Path::new(&file_path);
 
@@ -122,6 +123,7 @@ fn write_file(file_path: &str, contents: &str) {
     std::fs::write(file_path, contents).expect("Cannot write to file")
 }
 
+// TODO: Refactor to own module? Tie into palette?
 fn replace_colors(from_palette: Palette, to_palette: Palette, content: String) -> String {
     let mut result = content;
 
