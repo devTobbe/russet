@@ -15,9 +15,9 @@ pub enum Command {
     /// List the currently available palettes
     List,
     /// Add a palette
-    Add {name : String, contents : String},
+    Add { name: String, contents: String },
     /// Delete a palette
-    Delete {name : String},
+    Delete { name: String },
     /// Edit a palette
-    Edit {name : String, contents: String},
+    Edit { name: String, contents: String },
 }
