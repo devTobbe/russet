@@ -30,7 +30,8 @@ fn main() {
         Command::Edit { name, contents } => {}
     }
 
-    // TODO: Moves these and rearrange 
+    // TODO: Moves these and rearrange
+    // pref store them in json or YAML or smth...
     //let solarized = Palette {
     //    name: "Solarized Osaka".to_string(),
     //    colors: HashMap::from([
@@ -75,30 +76,29 @@ fn main() {
     //    ]),
     //};
 
-//    let content = String::from(
-//        "[colors]
-//base03 = #11111b
-//base02 = #181825
-//base01 = #313244
-//base00 = #45475a
-//base0  = #cdd6f4
-//base1  = #bac2de
-//base2  = #f5e0dc
-//base3  = #f2cdcd
-//
-//yellow   = #f9e2af
-//orange   = #fab387
-//red      = #f38ba8
-//magenta  = #f5c2e7
-//violet   = #cba6f7
-//blue     = #89b4fa
-//cyan     = #94e2d5
-//green    = #a6e3a1
-//",
-//    );
+    //    let content = String::from(
+    //        "[colors]
+    //base03 = #11111b
+    //base02 = #181825
+    //base01 = #313244
+    //base00 = #45475a
+    //base0  = #cdd6f4
+    //base1  = #bac2de
+    //base2  = #f5e0dc
+    //base3  = #f2cdcd
+    //
+    //yellow   = #f9e2af
+    //orange   = #fab387
+    //red      = #f38ba8
+    //magenta  = #f5c2e7
+    //violet   = #cba6f7
+    //blue     = #89b4fa
+    //cyan     = #94e2d5
+    //green    = #a6e3a1
+    //",
+    //    );
 
-//    let new = replace_colors(catppuccin, solarized, content);
-
+    //    let new = replace_colors(catppuccin, solarized, content);
 }
 
 fn read_file(file_path: &str) -> Result<String, Error> {
