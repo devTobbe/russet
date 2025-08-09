@@ -4,7 +4,6 @@ use std::{
     path::Path,
 };
 
-// TODO: Refactor to own module
 pub fn read_file(file_path: &str) -> Result<String, Error> {
     let path = Path::new(&file_path);
 
