@@ -4,6 +4,8 @@ use std::{
     path::Path,
 };
 
+use toml::ser::Error as TomlError;
+
 use crate::palette::Palette;
 
 pub fn read_file(file_path: &str) -> Result<String, Error> {
@@ -27,12 +29,6 @@ fn write_file(file_path: &str, contents: &str) {
     std::fs::write(file_path, contents).expect("Cannot write to file")
 }
 
-fn serialize_palette(p: Palette) -> String {
-    match toml::to_string_pretty(&p) {
-        Ok(toml_str) => toml_str,
-        Err(e) => {
-            eprint!("Failed to serialize the palette {}: {}", p.name, e);
-            std::process::exit(1);
-        }
-    }
+fn serialize_palette(p: Palette) -> Result<String, TomlError> {
+    toml::to_string_pretty(&p)
 }
