@@ -154,16 +154,6 @@ source = "registry+https://github.com/rust-lang/crates.io-index"
 checksum = "a4895175b425cb1f87721b59f0f286c2092bd4af812243672510e1ac53e2e0ad"
 
 [[package]]
-name = "palette_swapper"
-version = "0.1.0"
-dependencies = [
- "clap",
- "regex",
- "serde",
- "toml",
-]
-
-[[package]]
 name = "proc-macro2"
 version = "1.0.95"
 source = "registry+https://github.com/rust-lang/crates.io-index"
@@ -209,6 +199,16 @@ name = "regex-syntax"
 version = "0.8.5"
 source = "registry+https://github.com/rust-lang/crates.io-index"
 checksum = "2b15c43186be67a4fd63bee50d0303afffcef381492ebe2c5d87f324e1b8815c"
+
+[[package]]
+name = "russet"
+version = "0.1.0"
+dependencies = [
+ "clap",
+ "regex",
+ "serde",
+ "toml",
+]
 
 [[package]]
 name = "serde"
