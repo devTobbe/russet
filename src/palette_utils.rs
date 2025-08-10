@@ -5,14 +5,14 @@ use crate::palette::Palette;
 fn replace_colors(
     from_palette: Palette,
     to_palette: Palette,
-    content: String,
+    content: &str,
 ) -> Result<String, Error> {
-    let mut result = content;
+    let mut result = String::from(content);
 
     for (name, hex) in &from_palette.colors {
         for (to_name, to_hex) in &to_palette.colors {
             if name == to_name {
-                let str = format!("(?i){}", regex::escape(hex));
+                let str = format!("(?:){}", regex::escape(hex));
                 let re = Regex::new(&str)?;
                 result = re.replace_all(&result, to_hex).into_owned();
 
