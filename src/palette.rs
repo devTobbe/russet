@@ -1,9 +1,9 @@
 use std::collections::HashMap;
 
-use serde::Serialize;
+use serde::{Deserialize, Serialize};
 
 #[derive(Debug)]
-#[derive(Serialize)]
+#[derive(Serialize, Deserialize)]
 pub struct Palette {
    pub name: String,
    pub colors: HashMap<String, String>,

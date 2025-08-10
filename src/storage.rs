@@ -4,7 +4,8 @@ use std::{
     path::Path,
 };
 
-use toml::ser::Error as TomlError;
+use toml::de::Error as TomlDeError;
+use toml::ser::Error as TomlSerError;
 
 use crate::palette::Palette;
 
@@ -29,6 +30,10 @@ fn write_file(file_path: &str, contents: &str) -> Result<(), Error> {
     std::fs::write(file_path, contents)
 }
 
-fn serialize_palette(p: Palette) -> Result<String, TomlError> {
-    toml::to_string_pretty(&p)
+fn serialize_palette(p: &Palette) -> Result<String, TomlSerError> {
+    toml::to_string_pretty(p)
+}
+
+fn deserialize_palette(s: &str) -> Result<Palette, TomlDeError> {
+    toml::from_str(s)
 }
