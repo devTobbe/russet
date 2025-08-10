@@ -9,17 +9,33 @@ use clap::Parser;
 
 use crate::command::{Cli, Command};
 
-use crate::storage::read_file;
+use crate::storage::{deserialize_palette, read_file};
 
 fn main() -> Result<(), Box<dyn Error>> {
     let file = read_file("");
     let cli = Cli::parse();
 
-    match cli.command {
-        Command::Convert { from, to } => {}
-        Command::List => {}
-        Command::Add { name, contents } => {}
-        Command::Delete { name } => {}
-        Command::Edit { name, contents } => {}
+    match &cli.command {
+        Command::Convert { from, to } => {
+            todo!()
+        }
+        Command::List => handle_list(),
+        Command::Add { name, contents } => {
+            todo!()
+        }
+        Command::Delete { name } => {
+            todo!()
+        }
+        Command::Edit { name, contents } => {
+            todo!()
+        }
     }
+}
+
+fn handle_list() -> Result<(), Box<dyn Error>> {
+    // FIX: Make this work for several palettes too, right now it will onyl work with one
+    let s = read_file("palettes.toml")?;
+    let palettes = deserialize_palette(&s)?;
+    println!("{palettes:?}");
+    Ok(())
 }
