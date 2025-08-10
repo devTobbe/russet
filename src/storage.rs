@@ -21,12 +21,12 @@ pub fn read_file(file_path: &str) -> Result<String, Error> {
     std::fs::read_to_string(file_path)
 }
 
-fn write_file(file_path: &str, contents: &str) {
+fn write_file(file_path: &str, contents: &str) -> Result<(), Error> {
     if !Path::new(file_path).exists() {
         let _ = File::create(file_path);
     }
 
-    std::fs::write(file_path, contents).expect("Cannot write to file")
+    std::fs::write(file_path, contents)
 }
 
 fn serialize_palette(p: Palette) -> Result<String, TomlError> {
