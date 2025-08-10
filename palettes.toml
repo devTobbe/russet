@@ -1,6 +1,6 @@
+[[palette]]
 name = "Solarized Osaka"
-
-[colors]
+[palette.colors]
 base03 = "#001419"
 base02 = "#002b36"
 base01 = "#586e75"
@@ -17,3 +17,24 @@ violet = "#6c71c4"
 blue = "#268bd2"
 cyan = "#2aa198"
 green = "#859900"
+
+[[palette]]
+name = "Another Palette"
+[palette.colors]
+base03 = "#112233"
+base02 = "#445566"
+base01 = "#778899"
+base00 = "#aabbcc"
+base0 = "#ddeeff"
+base1 = "#001122"
+base2 = "#334455"
+base3 = "#667788"
+yellow = "#ffcc00"
+orange = "#ff6600"
+red = "#cc0000"
+magenta = "#cc00cc"
+violet = "#6600cc"
+blue = "#0066cc"
+cyan = "#00cccc"
+green = "#00cc66"
+
