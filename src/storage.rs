@@ -22,7 +22,7 @@ pub fn read_file(file_path: &str) -> Result<String, Error> {
     std::fs::read_to_string(file_path)
 }
 
-fn write_file(file_path: &str, contents: &str) -> Result<(), Error> {
+pub fn write_file(file_path: &str, contents: &str) -> Result<(), Error> {
     if !Path::new(file_path).exists() {
         let _ = File::create(file_path);
     }
@@ -30,10 +30,10 @@ fn write_file(file_path: &str, contents: &str) -> Result<(), Error> {
     std::fs::write(file_path, contents)
 }
 
-fn serialize_palette(p: &Palette) -> Result<String, TomlSerError> {
+pub fn serialize_palette(p: &Palette) -> Result<String, TomlSerError> {
     toml::to_string_pretty(p)
 }
 
-fn deserialize_palette(s: &str) -> Result<Palette, TomlDeError> {
+pub fn deserialize_palette(s: &str) -> Result<Palette, TomlDeError> {
     toml::from_str(s)
 }
