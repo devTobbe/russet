@@ -7,7 +7,7 @@ use std::{
 use toml::de::Error as TomlDeError;
 use toml::ser::Error as TomlSerError;
 
-use crate::palette::Palette;
+use crate::palette::Palettes;
 
 pub fn read_file(file_path: &str) -> Result<String, Error> {
     let path = Path::new(&file_path);
@@ -30,10 +30,10 @@ pub fn write_file(file_path: &str, contents: &str) -> Result<(), Error> {
     std::fs::write(file_path, contents)
 }
 
-pub fn serialize_palette(p: &Palette) -> Result<String, TomlSerError> {
+pub fn serialize_palettes(p: &Palettes) -> Result<String, TomlSerError> {
     toml::to_string_pretty(p)
 }
 
-pub fn deserialize_palette(s: &str) -> Result<Palette, TomlDeError> {
+pub fn deserialize_palettes(s: &str) -> Result<Palettes, TomlDeError> {
     toml::from_str(s)
 }
