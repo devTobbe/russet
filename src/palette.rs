@@ -9,6 +9,13 @@ pub struct Palette {
    pub colors: HashMap<String, String>,
 }
 
+#[derive(Debug)]
+#[derive(Serialize, Deserialize)]
+pub struct Palettes {
+    #[serde(rename= "palette")]
+   pub palette_collection: Vec<Palette>
+}
+
     // TODO: Moves these and rearrange
     // pref store them in json or YAML or smth...
     //let solarized = Palette {
