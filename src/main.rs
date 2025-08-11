@@ -33,7 +33,6 @@ fn main() -> Result<(), Box<dyn Error>> {
 }
 
 fn handle_list() -> Result<(), Box<dyn Error>> {
-    // FIX: Make this work for several palettes too, right now it will onyl work with one
     let s = read_file("palettes.toml")?;
     let palettes = deserialize_palettes(&s)?;
     println!("{palettes:?}");
