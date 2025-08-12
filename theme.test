@@ -1,0 +1,24 @@
+[colors]
+background = "#001419" # base03
+foreground = "#839496" # base0
+cursor     = "#93a1a1" # base1
+
+# ANSI colors
+color0  = "#001419" # base03
+color1  = "#dc322f" # red
+color2  = "#859900" # green
+color3  = "#b58900" # yellow
+color4  = "#268bd2" # blue
+color5  = "#d33682" # magenta
+color6  = "#2aa198" # cyan
+color7  = "#eee8d5" # base2
+
+# Bright ANSI colors
+color8  = "#002b36" # base02
+color9  = "#cb4b16" # orange
+color10 = "#586e75" # base01
+color11 = "#657b83" # base00
+color12 = "#839496" # base0
+color13 = "#6c71c4" # violet
+color14 = "#93a1a1" # base1
+color15 = "#fdf6e3" # base3
