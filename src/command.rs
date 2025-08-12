@@ -11,7 +11,11 @@ pub struct Cli {
 #[derive(Subcommand, Debug)]
 pub enum Command {
     /// Convert a file from one palette to another, available in verison one
-    Convert { from: String, to: String },
+    Convert {
+        from: String,
+        to: String,
+        file: String,
+    },
     /// List the currently available palettes
     List,
     /// Add a palette
