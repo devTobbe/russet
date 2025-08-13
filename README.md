@@ -4,7 +4,7 @@
 
 ## Goals for Version 0.0.1
 
-- [ ] Support for 16-color palettes
+- [x] Support for 16-color palettes
 - [ ] Hexadecimal color handling
-- [ ] Configuration via TOML files
-- [ ] Simple CLI with commands to add, delete, edit, convert, and list palettes
+- [x] Configuration via TOML files
+- [x] Simple CLI with commands to add, delete, edit, convert, and list palettes
