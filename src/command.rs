@@ -8,6 +8,7 @@ pub struct Cli {
     pub command: Command,
 }
 
+// TODO: Add possibility of selecting output file name (and location I suppose)
 #[derive(Subcommand, Debug)]
 pub enum Command {
     /// Convert a file from one palette to another, available in verison one
