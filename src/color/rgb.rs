@@ -2,7 +2,7 @@ use core::fmt;
 use std::error::Error;
 
 #[derive(Debug)]
-struct Rgb {
+pub struct Rgb {
     pub r: u8, // 0-255
     pub g: u8, // 0-255
     pub b: u8, // 0-255
