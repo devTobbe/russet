@@ -1,5 +1,5 @@
+mod color;
 mod command;
-mod color_spaces;
 mod palette;
 mod palette_utils;
 mod storage;
