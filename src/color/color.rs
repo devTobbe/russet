@@ -8,11 +8,16 @@ pub enum Color {
 }
 
 impl Color {
-    fn to_rgb() {
-        todo!()
+    fn to_rgb(&self) -> Color {
+        match self {
+            Color::Rgb(rgb) => Color::Rgb(*rgb),
+            Color::Hsl(hsl) => todo!(),
+        }
     }
-    fn to_hsl() {
-        todo!()
+    fn to_hsl(&self) -> Color {
+        match self {
+            Color::Rgb(rgb) => todo!(),
+            Color::Hsl(hsl) => Color::Hsl(*hsl),
+        }
     }
-
 }
