@@ -112,7 +112,6 @@ impl Color {
                 h = h.rem_euclid(6.0);
                 h *= 60.0;
 
-
                 // LIGHTNESS / VALUE
                 let l = (cmax + cmin) / 2.0;
 
