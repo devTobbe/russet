@@ -42,6 +42,7 @@ impl fmt::Display for Rgb {
 mod tests {
     use super::*;
 
+    // TODO: Add more tests
     #[test]
     fn test() {
         let s = "#001419";
