@@ -4,3 +4,9 @@ pub struct Hsl {
     pub s: f32, // 0.0-1.0
     pub l: f32, // 0.0-1.0
 }
+
+impl Hsl {
+    fn new(h : f32, s : f32, l : f32,) -> Self {
+        Self { h, s, l }
+   }
+}
