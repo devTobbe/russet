@@ -9,7 +9,7 @@ pub fn replace_colors(
 ) -> Result<String, Error> {
     let mut result = String::from(content);
 
-    // TODO: Refactor into functional
+    // TODO: Rewrite with new color enum
     for (name, hex) in &from_palette.colors {
         for (to_name, to_hex) in &to_palette.colors {
             if name == to_name {
