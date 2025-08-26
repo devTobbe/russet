@@ -1,7 +1,8 @@
 use core::fmt;
+use serde::{Deserialize, Serialize};
 use std::error::Error;
 
-#[derive(Debug, Clone, Copy, PartialEq)]
+#[derive(Debug, Clone, Copy, PartialEq, Deserialize, Serialize)]
 pub struct Rgb {
     pub r: u8, // 0-255
     pub g: u8, // 0-255

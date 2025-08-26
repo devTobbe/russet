@@ -1,9 +1,10 @@
+use serde::{Deserialize, Serialize};
 use std::error::Error;
 
-use crate::color::hsl::{self, Hsl};
+use crate::color::hsl::Hsl;
 use crate::color::rgb::Rgb;
 
-#[derive(Debug)]
+#[derive(Debug, Deserialize, Serialize)]
 pub enum Color {
     Rgb(Rgb),
     Hsl(Hsl),
