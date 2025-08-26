@@ -1,7 +1,5 @@
 mod color;
 mod command;
-mod palette;
-mod palette_utils;
 mod storage;
 
 use std::error::Error;
@@ -10,7 +8,7 @@ use clap::Parser;
 
 use crate::command::{Cli, Command};
 
-use crate::palette_utils::replace_colors;
+use crate::color::palette_utils::replace_colors;
 use crate::storage::{
     deserialize_palette, deserialize_palettes, read_file, serialize_palettes, write_file,
 };
