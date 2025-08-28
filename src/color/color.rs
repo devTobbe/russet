@@ -10,11 +10,6 @@ pub enum Color {
     Hsl(Hsl),
 }
 
-// Helper
-fn round_to_nearest_hsl(f: f32) -> f32 {
-    ((f * 10.0).round()) / 10.0
-}
-
 impl Color {
     fn to_rgb(&self) -> Result<Color, Box<dyn Error>> {
         match self {
@@ -59,6 +54,11 @@ impl Color {
         }
     }
     fn to_hsl(&self) -> Result<Color, Box<dyn Error>> {
+
+        fn round_to_nearest_hsl(f: f32) -> f32 {
+            ((f * 10.0).round()) / 10.0
+        }
+
         match self {
             Color::Rgb(rgb) => {
                 let r = rgb.r;
@@ -94,10 +94,6 @@ impl Color {
                 }
 
                 let delta = cmax - cmin;
-
-                println!("cmax: {cmax}");
-                println!("cmin: {cmin}");
-                println!("DELTA: {delta}");
 
                 // HUE
                 let mut h: f32 = if delta == 0.0 {
