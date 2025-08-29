@@ -10,8 +10,22 @@ pub enum Color {
     Hsl(Hsl),
 }
 
+// TODO: Turn functions into a trait instead, probably an better solution
 impl Color {
     fn to_rgb(&self) -> Result<Color, Box<dyn Error>> {
+
+        const NORM: f32 = 100.0;
+        const SECTOR_SIZE: f32 = 60.0;
+        const SECTOR_CENTER : f32 = 1.0;
+        const RGB_MAX: f32 = 255.0;
+        const LIGHTNESS_SCALE : f32 = 2.0;
+        const MAX_CHROMA : f32 = 1.0;
+        const SECTOR_CENTER : f32 = 1.0;
+
+        fn scale_to_rgb(value: f32, m: f32) -> u8 {
+            ((value + m) * RGB_MAX).round() as u8
+        }
+
         match self {
             Color::Rgb(rgb) => Ok(Color::Rgb(*rgb)),
 
@@ -23,29 +37,38 @@ impl Color {
                 let l = hsl.l;
 
                 // Normalize, h is already fine and does not need to be normalized
-                let s = s / 100.0;
-                let l = l / 100.0;
+                let s = s / NORM;
+                let l = l / NORM;
 
-                let c = (1.0 - (2.0 * l - 1.0).abs()) * s;
+                // Chroma
+                let c = (MAX_CHROMA - (LIGHTNESS_SCALE * l - MAX_CHROMA).abs()) * s;
 
-                let x = c * (1.0 - ((h / 60.0).rem_euclid(2.0) - 1.0).abs());
+                // Intermediate Value
+                let x = c * (1.0 - ((h / SECTOR_SIZE).rem_euclid(2.0) - 1.0).abs());
 
+                // Match
                 let m = l - c / 2.0;
 
-                let (r1, g1, b1) = match h {
-                    0.0..=59.0 => (c, x, 0.0),
-                    60.0..=119.0 => (x, c, 0.0),
-                    120.0..=179.0 => (0.0, c, x),
-                    180.0..=239.0 => (0.0, x, c),
-                    240.0..=299.0 => (x, 0.0, c),
-                    300.0..=359.0 => (c, 0.0, x),
+                // Calculates the size of the sector in which different RGB
+                // mapping apply. Each sector corresponds to 60 deg segments.
+                let sector = (h / SECTOR_SIZE).floor() as i32;
+
+                // Choose outcomes depending on sector as specified in the
+                // conversion from hsl to RGB
+                let (r1, g1, b1) = match sector {
+                    0 => (c, x, 0.0),
+                    1 => (x, c, 0.0),
+                    2 => (0.0, c, x),
+                    3 => (0.0, x, c),
+                    4 => (x, 0.0, c),
+                    5 => (c, 0.0, x),
                     _ => return Err("Hue out of range 0–359".into()),
                 };
 
                 // Construct the final RGB
-                let r = ((r1 + m) * 255.0).round() as u8;
-                let g = ((g1 + m) * 255.0).round() as u8;
-                let b = ((b1 + m) * 255.0).round() as u8;
+                let r = scale_to_rgb(r1, m);
+                let g = scale_to_rgb(g1, m);
+                let b = scale_to_rgb(b1, m);
 
                 let final_rgb = Rgb { r, g, b };
 
@@ -54,7 +77,6 @@ impl Color {
         }
     }
     fn to_hsl(&self) -> Result<Color, Box<dyn Error>> {
-
         fn round_to_nearest_hsl(f: f32) -> f32 {
             ((f * 10.0).round()) / 10.0
         }
