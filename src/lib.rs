@@ -1,6 +1,7 @@
 mod color;
 mod command;
 mod storage;
+mod converter;
 
 use std::error::Error;
 
