@@ -2,6 +2,8 @@ use core::fmt;
 use serde::{Deserialize, Serialize};
 use std::error::Error;
 
+use crate::color::hsl::Hsl;
+
 #[derive(Debug, Clone, Copy, PartialEq, Deserialize, Serialize)]
 pub struct Rgb {
     pub r: u8, // 0-255
@@ -36,6 +38,60 @@ impl Rgb {
 impl fmt::Display for Rgb {
     fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result {
         write!(f, "RGB({}, {}, {})", self.r, self.g, self.b)
+    }
+}
+
+impl From<Hsl> for Rgb {
+    fn from(hsl: Hsl) -> Self {
+        const NORM: f32 = 100.0;
+        const SECTOR_SIZE: f32 = 60.0;
+        const RGB_MAX: f32 = 255.0;
+        const LIGHTNESS_SCALE: f32 = 2.0;
+        const MAX_CHROMA: f32 = 1.0;
+
+        fn scale_to_rgb(value: f32, m: f32) -> u8 {
+            ((value + m) * RGB_MAX).round() as u8
+        }
+        // https://www.rapidtables.com/convert/color/hsl-to-rgb.html
+        // Used this as a reference for the equation
+        let h = hsl.h;
+        let s = hsl.s;
+        let l = hsl.l;
+
+        // Normalize, h is already fine and does not need to be normalized
+        let s = s / NORM;
+        let l = l / NORM;
+
+        // Chroma
+        let c = (MAX_CHROMA - (LIGHTNESS_SCALE * l - MAX_CHROMA).abs()) * s;
+
+        // Intermediate Value
+        let x = c * (MAX_CHROMA - ((h / SECTOR_SIZE).rem_euclid(2.0) - MAX_CHROMA).abs());
+
+        // Match
+        let m = l - c / 2.0;
+
+        // Calculates the size of the sector in which different RGB
+        // mapping apply. Each sector corresponds to 60 deg segments.
+        let sector = (h / SECTOR_SIZE).floor() as i32;
+
+        // Choose outcomes depending on sector as specified in the
+        // conversion from hsl to RGB
+        let (r1, g1, b1) = match sector {
+            0 => (c, x, 0.0),
+            1 => (x, c, 0.0),
+            2 => (0.0, c, x),
+            3 => (0.0, x, c),
+            4 => (x, 0.0, c),
+            5 => (c, 0.0, x),
+            _ => (0.0, 0.0, 0.0),
+        };
+
+        // Construct the final RGB
+        let r = scale_to_rgb(r1, m);
+        let g = scale_to_rgb(g1, m);
+        let b = scale_to_rgb(b1, m);
+        Rgb { r, g, b }
     }
 }
 
