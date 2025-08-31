@@ -16,11 +16,11 @@ impl Rgb {
         Self { r, g, b }
     }
 
-    fn to_hex(&self) -> Result<String, Box<dyn Error>> {
+    fn in_hex(&self) -> Result<String, Box<dyn Error>> {
         todo!()
     }
 
-    fn from_hex(s: &str) -> Result<Rgb, Box<dyn Error>> {
+    fn new_from_hex(s: &str) -> Result<Rgb, Box<dyn Error>> {
         // TODO: ADD ERROR CHECKING ON LENGTH
         let s = s.trim_start_matches('#');
         let r_h = &s[0..2];
@@ -103,9 +103,9 @@ mod tests {
     #[test]
     fn test() {
         let s = "#001419";
-        let from_hex = Rgb::from_hex(s).unwrap();
+        let new_from_hex = Rgb::new_from_hex(s).unwrap();
         let test = Rgb::new(0, 20, 25);
 
-        assert_eq!(from_hex, test);
+        assert_eq!(new_from_hex, test);
     }
 }
