@@ -14,13 +14,12 @@ use crate::storage::{
 };
 
 pub fn run() -> Result<(), Box<dyn Error>> {
-    let file = read_file("");
     let cli = Cli::parse();
 
     match &cli.command {
-        Command::Convert { from, to, file } => todo!(),
+        Command::Convert { from, to, format, input, output } => todo!(),
         Command::List => handle_list(),
-        Command::Show => todo!(),
+        Command::Show {name} => todo!(),
     }
 }
 
