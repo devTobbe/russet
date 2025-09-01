@@ -14,12 +14,26 @@ pub struct Cli {
 pub enum Command {
     /// Convert a file from one palette to another, available in verison one
     Convert {
+         /// The palette to switch from
+        #[arg(short, long)]
         from: String,
+         /// The palette to switch to
+        #[arg(short, long)]
         to: String,
-        file: String,
+         /// The format of the colors on the target file, supported are: RGB, HEX, HSL
+        #[arg(short, long)]
+        format: String,
+         /// Input file
+        #[arg(short, long)]
+        input: String,
+         /// Specify an output file
+        #[arg(short, long)]
+        output: String,
     },
     /// List the currently available palettes
     List,
     /// Show a specigic palette
-    Show,
+    Show {
+        name: String
+    }
 }
