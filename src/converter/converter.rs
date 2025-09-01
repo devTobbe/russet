@@ -1,10 +1,8 @@
 use regex::Regex;
 
-use crate::color::color::Color;
-
 struct ReplacementRule {
-    source_color: Color,
-    target_color: Color,
+    source_color: String,
+    target_color: String,
     regex: String,
 }
 
@@ -13,7 +11,7 @@ struct Converter {
 }
 
 impl ReplacementRule {
-    fn new(&self, source_color: Color, target_color: Color, regex: String) -> Self {
+    fn new(&self, source_color: String, target_color: String, regex: String) -> Self {
         Self {
             source_color,
             target_color,
@@ -26,15 +24,14 @@ impl Converter {
     fn new() {
         todo!();
     }
-    fn convert<'a>(&self, input: &'a str) -> &'a str {
-        // FIX: HUGE MESS RN, Fix this once structure has been planned a bit better
-        for replacement in &self.replacements {
-            let re_str = format!("(?:){}", regex::escape(&replacement.source_color));
+    fn convert(&self, input: &str) -> String {
+        let mut result = String::from(input);
+        self.replacements.iter().for_each(|replacement| {
+            let re_str = format!(replacement.regex, regex::escape(&replacement.source_color));
             let re = Regex::new(&re_str).expect("Failed to reggii");
-            re.replace_all(input, replacement.target_color.to_str());
-
-        }
-        todo!();
+            result = re.replace_all(input, replacement.target_color).into_owned();
+        });
+        result
     }
 }
 
