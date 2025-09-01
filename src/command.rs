@@ -20,10 +20,6 @@ pub enum Command {
     },
     /// List the currently available palettes
     List,
-    /// Add a palette
-    Add { contents: String },
-    /// Delete a palette
-    Delete { name: String },
-    /// Edit a palette
-    Edit { name: String, contents: String },
+    /// Show a specigic palette
+    Show,
 }
