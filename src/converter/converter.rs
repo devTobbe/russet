@@ -24,14 +24,9 @@ impl Converter {
     fn new() {
         todo!();
     }
+    // FIX THIS
     fn convert(&self, input: &str) -> String {
-        let mut result = String::from(input);
-        for replacement in &self.replacements {
-            let re_str = format!("(?:){}", regex::escape(&replacement.source_color));
-            let re = Regex::new(&re_str).expect("Failed to reggii");
-            result = re.replace_all(input, &replacement.target_color).to_string();
-        }
-        result
+        todo!()
     }
 }
 
