@@ -15,3 +15,15 @@ pub struct Palettes {
     #[serde(rename = "palette")]
     pub palette_collection: Vec<Palette>,
 }
+
+impl Palette {
+    fn convert_all<F>(&mut self, f: F)
+    where
+        F: Fn(&Color) -> Color,
+    {
+        for (_name, color) in self.colors.iter_mut() {
+            *color = f(color);
+        }
+    }
+}
+
