@@ -4,14 +4,35 @@ use crate::color::rgb::Rgb;
 
 #[derive(Debug, Clone, Copy, PartialEq, Deserialize, Serialize)]
 pub struct Hsl {
-    pub h: f32, // 360, TODO: make sure to clamp this when making a new HSL item
-    pub s: f32, // 0.0-1.0
-    pub l: f32, // 0.0-1.0
+    h: f32, // 360e
+    s: f32, // 0.0-1.0
+    l: f32, // 0.0-1.0
 }
 
 impl Hsl {
-    fn new(h: f32, s: f32, l: f32) -> Self {
+    pub fn new(h: f32, s: f32, l: f32) -> Self {
+        let h = h.clamp(0.0, 360.0);
+        let s = s.clamp(0.0, 1.0);
+        let l = l.clamp(0.0, 1.0);
         Self { h, s, l }
+    }
+    pub fn get_hue(&self) -> f32 {
+        self.h
+    }
+    pub fn set_hue(&mut self, h_new: f32) {
+        self.h = h_new.clamp(0.0, 360.0);
+    }
+    pub fn get_saturation(&self) -> f32 {
+        self.s
+    }
+    pub fn set_saturation(&mut self, s_new: f32) {
+        self.s = s_new.clamp(0.0, 1.0);
+    }
+    pub fn get_lightness(&self) -> f32 {
+        self.l
+    }
+    pub fn set_lightness(&mut self, l_new: f32) {
+        self.l = l_new.clamp(0.0, 1.0);
     }
 }
 
@@ -32,9 +53,9 @@ impl From<Rgb> for Hsl {
         }
 
         // Normalize
-        let r = rgb.r as f32 / RGB_MAX;
-        let g = rgb.g as f32 / RGB_MAX;
-        let b = rgb.b as f32 / RGB_MAX;
+        let r = rgb.get_red() as f32 / RGB_MAX;
+        let g = rgb.get_green() as f32 / RGB_MAX;
+        let b = rgb.get_blue() as f32 / RGB_MAX;
 
         // Get CMax and CMin
         let cmax = r.max(g).max(b);
