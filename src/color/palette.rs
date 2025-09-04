@@ -30,6 +30,7 @@ impl Palette {
         &self.colors
     }
 
+    // TODO: Refactor this to be more easily extensible. A lot of reused code
     pub fn convert_all_to_rgb(&mut self) {
         self.colors = self
             .colors
