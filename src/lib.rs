@@ -2,6 +2,7 @@ mod color;
 mod command;
 mod converter;
 mod storage;
+mod config;
 
 use std::error::Error;
 
@@ -12,6 +13,7 @@ use crate::command::{Cli, Command};
 use crate::storage::{
     deserialize_palette, deserialize_palettes, read_file, serialize_palettes, write_file,
 };
+
 
 pub fn run() -> Result<(), Box<dyn Error>> {
     let cli = Cli::parse();
