@@ -1,5 +1,3 @@
-use regex::Regex;
-
 struct ReplacementRule {
     source_color: String,
     target_color: String,
