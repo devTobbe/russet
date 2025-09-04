@@ -6,21 +6,36 @@ use crate::color::hsl::Hsl;
 
 #[derive(Debug, Clone, Copy, PartialEq, Deserialize, Serialize)]
 pub struct Rgb {
-    pub r: u8, // 0-255
-    pub g: u8, // 0-255
-    pub b: u8, // 0-255
+    r: u8, // 0-255
+    g: u8, // 0-255
+    b: u8, // 0-255
 }
 
 impl Rgb {
     fn new(r: u8, g: u8, b: u8) -> Self {
+        let r = r.clamp(0, 255);
+        let g = g.clamp(0, 255);
+        let b = b.clamp(0, 255);
         Self { r, g, b }
     }
 
-    fn in_hex(&self) -> Result<String, Box<dyn Error>> {
+    pub fn get_red(&self) -> u8 {
+        self.r
+    }
+
+    pub fn get_green(&self) -> u8 {
+        self.g
+    }
+
+    pub fn get_blue(&self) -> u8 {
+        self.b
+    }
+
+    pub fn in_hex(&self) -> Result<String, Box<dyn Error>> {
         todo!()
     }
 
-    fn new_from_hex(s: &str) -> Result<Rgb, Box<dyn Error>> {
+    pub fn new_from_hex(s: &str) -> Result<Rgb, Box<dyn Error>> {
         // TODO: ADD ERROR CHECKING ON LENGTH
         let s = s.trim_start_matches('#');
         let r_h = &s[0..2];
@@ -54,9 +69,9 @@ impl From<Hsl> for Rgb {
         }
         // https://www.rapidtables.com/convert/color/hsl-to-rgb.html
         // Used this as a reference for the equation
-        let h = hsl.h;
-        let s = hsl.s;
-        let l = hsl.l;
+        let h = hsl.get_hue();
+        let s = hsl.get_saturation();
+        let l = hsl.get_lightness();
 
         // Normalize, h is already fine and does not need to be normalized
         let s = s / NORM;
