@@ -8,3 +8,4 @@
 - [x] Hexadecimal color handling
 - [x] Configuration via TOML files
 - [x] Simple CLI with commands to add, delete, edit, convert, and list palettes
+- [x] Add more items to this list......
