@@ -30,32 +30,28 @@ impl Palette {
         &self.colors
     }
 
-    // TODO: Refactor this to be more easily extensible. A lot of reused code
-    pub fn convert_all_to_rgb(&mut self) {
-        self.colors = self
-            .colors
-            .iter()
-            .map(|(name, color)| (name.clone(), Color::Rgb(color.to_rgb())))
-            .collect::<HashMap<String, Color>>();
-    }
-
-    pub fn convert_all_to_hsl(&mut self) {
-        self.colors = self
-            .colors
-            .iter()
-            .map(|(name, color)| (name.clone(), Color::Hsl(color.to_hsl())))
-            .collect::<HashMap<String, Color>>();
-    }
-}
-
-impl Palette {
     fn convert_all<F>(&mut self, f: F)
     where
         F: Fn(&Color) -> Color,
     {
-        for (_name, color) in self.colors.iter_mut() {
-            *color = f(color);
-        }
+        self.colors = self
+            .colors
+            .iter()
+            .map(|(name, color)| (name.clone(), f(color)))
+            .collect::<HashMap<String, Color>>();
     }
+
+    // TODO: Refactor this to be more easily extensible. A lot of reused code
+    pub fn convert_all_to_rgb(&mut self) {
+        self.convert_all(|c| c.to_rgb());
+    }
+
+    pub fn convert_all_to_hsl(&mut self) {
+        self.convert_all(|c| c.to_hsl());
+    }
+}
+
+impl Palette {
+
 }
 
