@@ -10,16 +10,16 @@ pub enum Color {
 }
 
 impl Color {
-    pub fn to_hsl(&self) -> Hsl {
+    pub fn to_hsl(&self) -> Color {
         match self {
-            Color::Rgb(rgb) => (*rgb).into(),
-            Color::Hsl(hsl) => *hsl,
+            Color::Rgb(rgb) => Color::Hsl((*rgb).into()),
+            Color::Hsl(hsl) => Color::Hsl(*hsl),
         }
     }
-    pub fn to_rgb(&self) -> Rgb {
+    pub fn to_rgb(&self) -> Color {
         match self {
-            Color::Rgb(rgb) => *rgb,
-            Color::Hsl(hsl) => (*hsl).into(),
+            Color::Rgb(rgb) => Color::Rgb(*rgb),
+            Color::Hsl(hsl) => Color::Rgb((*hsl).into()),
         }
     }
 }

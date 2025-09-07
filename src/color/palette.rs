@@ -2,7 +2,7 @@ use std::collections::HashMap;
 
 use serde::{Deserialize, Serialize};
 
-use crate::color::color::{Color};
+use crate::color::color::Color;
 
 #[derive(Debug, Serialize, Deserialize)]
 pub struct Palette {
@@ -50,8 +50,3 @@ impl Palette {
         self.convert_all(|c| c.to_hsl());
     }
 }
-
-impl Palette {
-
-}
-
