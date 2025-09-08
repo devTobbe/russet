@@ -41,7 +41,6 @@ impl Palette {
             .collect::<HashMap<String, Color>>();
     }
 
-    // TODO: Refactor this to be more easily extensible. A lot of reused code
     pub fn convert_all_to_rgb(&mut self) {
         self.convert_all(|c| c.to_rgb());
     }
