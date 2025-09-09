@@ -7,7 +7,8 @@ use std::{
 use toml::de::Error as TomlDeError;
 use toml::ser::Error as TomlSerError;
 
-use crate::color::palette::{Palette, Palettes};
+use crate::models::palette::{Palette, Palettes};
+
 
 pub fn read_file(file_path: &str) -> Result<String, Error> {
     let path = Path::new(&file_path);

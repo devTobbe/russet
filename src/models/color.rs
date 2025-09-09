@@ -1,7 +1,7 @@
 use serde::{Deserialize, Serialize};
 
-use crate::color::hsl::Hsl;
-use crate::color::rgb::Rgb;
+use crate::models::hsl::Hsl;
+use crate::models::rgb::Rgb;
 
 #[derive(Debug, Deserialize, Serialize)]
 pub enum Color {

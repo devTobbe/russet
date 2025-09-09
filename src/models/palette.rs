@@ -2,7 +2,8 @@ use std::collections::HashMap;
 
 use serde::{Deserialize, Serialize};
 
-use crate::color::color::Color;
+use crate::models::color::Color;
+
 
 #[derive(Debug, Serialize, Deserialize)]
 pub struct Palette {
