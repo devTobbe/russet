@@ -9,3 +9,16 @@
 - [x] Configuration via TOML files
 - [x] Simple CLI with commands to add, delete, edit, convert, and list palettes
 - [x] Add more items to this list......
+
+## Personal TODOs
+- [x] RGB 
+- [x] HSL 
+- [x] Color 
+- [x] Palette
+- [ ] RGB Error Checking
+- [ ] HSL Error Checking
+- [ ] Color Error Checking
+- [ ] Palette Error Checking
+- [ ] Converter
+- [ ] Storage rework
+- [ ] Command handling and configuration creation
