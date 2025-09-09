@@ -1,4 +1,4 @@
-mod color;
+mod models;
 mod command;
 mod converter;
 mod storage;

@@ -2,7 +2,8 @@ use core::fmt;
 use serde::{Deserialize, Serialize};
 use std::error::Error;
 
-use crate::color::hsl::Hsl;
+use crate::models::hsl::Hsl;
+
 
 #[derive(Debug, Clone, Copy, PartialEq, Deserialize, Serialize)]
 pub struct Rgb {

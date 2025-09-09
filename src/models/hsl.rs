@@ -1,6 +1,7 @@
 use serde::{Deserialize, Serialize};
 
-use crate::color::rgb::Rgb;
+use crate::models::rgb::Rgb;
+
 
 #[derive(Debug, Clone, Copy, PartialEq, Deserialize, Serialize)]
 pub struct Hsl {
