@@ -1,7 +1,7 @@
 use std::error::Error;
 
 #[derive(Debug)]
-struct Config {
+pub struct Config {
     from: String,
     to: String,
     format: String,
