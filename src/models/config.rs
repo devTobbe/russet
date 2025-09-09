@@ -19,7 +19,7 @@ pub struct ConfigBuilder {
 }
 
 impl ConfigBuilder {
-    pub fn new(&self) -> Self {
+    pub fn new() -> Self {
         Self::default()
     }
 
