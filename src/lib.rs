@@ -9,6 +9,7 @@ use clap::Parser;
 
 use crate::command::{Cli, Command};
 
+use crate::models::config::{Config, ConfigBuilder};
 use crate::storage::{
     deserialize_palette, deserialize_palettes, read_file, serialize_palettes, write_file,
 };
@@ -58,6 +59,10 @@ fn handle_list() -> Result<(), Box<dyn Error>> {
     let palettes = deserialize_palettes(&s)?;
     println!("{palettes:?}");
     Ok(())
+}
+
+fn handle_args() -> Config {
+    todo!()
 }
 
 fn handle_convert() -> Result<(), Box<dyn Error>>{
