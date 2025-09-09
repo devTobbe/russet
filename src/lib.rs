@@ -2,7 +2,6 @@ mod models;
 mod command;
 mod converter;
 mod storage;
-mod config;
 
 use std::error::Error;
 
@@ -59,4 +58,12 @@ fn handle_list() -> Result<(), Box<dyn Error>> {
     let palettes = deserialize_palettes(&s)?;
     println!("{palettes:?}");
     Ok(())
+}
+
+fn handle_convert() -> Result<(), Box<dyn Error>>{
+    todo!()
+}
+
+fn handle_show() -> Result<(), Box<dyn Error>>{
+    todo!()
 }
