@@ -23,6 +23,7 @@ impl ConfigBuilder {
         Self::default()
     }
 
+    // TODO: Add error checking and empty string check
     pub fn from<S: Into<String>>(mut self, from: S) -> Self {
         self.from = Some(from.into());
         self
@@ -48,7 +49,7 @@ impl ConfigBuilder {
         self
     }
 
-    fn build(self) -> Result<Config, Box<dyn Error>> {
+    pub fn build(self) -> Result<Config, Box<dyn Error>> {
         // TODO: Add support for user defaults
         //let conf = load_defaults()
         Ok(Config {
