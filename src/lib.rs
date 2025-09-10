@@ -19,7 +19,10 @@ pub fn run() -> Result<(), Box<dyn Error>> {
     let cli = Cli::parse();
 
     match &cli.command {
-        Command::Convert { from, to, format, input, output } => todo!(),
+        Command::Convert { from, to, format, input, output } => {
+            let conf = build_args(from, to, format, input, output)?;
+            handle_convert(conf)
+        },
         Command::List => handle_list(),
         Command::Show {name} => todo!(),
     }
@@ -61,11 +64,19 @@ fn handle_list() -> Result<(), Box<dyn Error>> {
     Ok(())
 }
 
-fn handle_args() -> Config {
-    todo!()
+fn build_args(from: &str, to: &str, format: &str, input: &str, output: &str) -> Result<Config, Box<dyn Error>> {
+    let builder = ConfigBuilder::new();
+
+    builder
+        .from(from)
+        .to(to)
+        .format(format)
+        .input(input)
+        .output(output)
+        .build()
 }
 
-fn handle_convert() -> Result<(), Box<dyn Error>>{
+fn handle_convert(conf : Config) -> Result<(), Box<dyn Error>>{
     todo!()
 }
 
