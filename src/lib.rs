@@ -9,7 +9,9 @@ use clap::Parser;
 
 use crate::command::{Cli, Command};
 
+use crate::models::color::ColorFormat;
 use crate::models::config::{Config, ConfigBuilder};
+use crate::models::palette::Palette;
 use crate::storage::{
     deserialize_palette, deserialize_palettes, read_file, serialize_palettes, write_file,
 };
@@ -77,6 +79,26 @@ fn build_args(from: &str, to: &str, format: &str, input: &str, output: &str) -> 
 }
 
 fn handle_convert(conf : Config) -> Result<(), Box<dyn Error>>{
+    // NOTE: Order of actions:  
+    // 1. Fetch From and To from Input
+    // 2. Fetch format
+    // 3. If format differs, convert
+    // 4. Converter ->
+    // 5.   Generate Replacement Rules
+    // 6.   Apply Replacements
+    // 7. Wrtie to Output
+
+    let input = read_file("palettes.toml")?;
+    let input_deser = deserialize_palettes(&input)?;
+    // TODO: Maybe implement this a bit better for a palette collection
+    let fromp : &mut models::palette::Palette = &mut input_deser.palette_collection().iter().find(|p| p.get_name() == conf.from()).unwrap();
+    let top : &mut models::palette::Palette = &mut input_deser.palette_collection().iter().find(|p| p.get_name() == conf.to()).unwrap();
+    let format = ColorFormat::identify(conf.format());
+    match format {
+        ColorFormat::Rgb => {fromp.convert_all_to_rgb();top.convert_all_to_rgb();}
+        ColorFormat::Hsl => {fromp.convert_all_to_hsl();top.convert_all_to_hsl();}
+    }
+
     todo!()
 }
 
