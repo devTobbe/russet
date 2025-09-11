@@ -17,6 +17,8 @@ pub struct Palettes {
     palette_collection: Vec<Palette>,
 }
 
+// TODO: Add getter for Palettes, I suppose, maybe refactor
+
 impl Palette {
     pub fn new(name: String, colors: HashMap<String, Color>) -> Palette {
         // TODO: Add checks for duplicates
@@ -48,5 +50,11 @@ impl Palette {
 
     pub fn convert_all_to_hsl(&mut self) {
         self.convert_all(|c| c.to_hsl());
+    }
+}
+
+impl Palettes {
+    pub fn palette_collection(&self) -> &Vec<Palette> {
+        &self.palette_collection
     }
 }
