@@ -4,14 +4,13 @@ use serde::{Deserialize, Serialize};
 
 use crate::models::color::Color;
 
-
-#[derive(Debug, Serialize, Deserialize)]
+#[derive(Debug, Clone, Serialize, Deserialize)]
 pub struct Palette {
     name: String,
     colors: HashMap<String, Color>,
 }
 
-#[derive(Debug, Serialize, Deserialize)]
+#[derive(Debug, Clone, Serialize, Deserialize)]
 pub struct Palettes {
     #[serde(rename = "palette")]
     palette_collection: Vec<Palette>,
@@ -56,5 +55,12 @@ impl Palette {
 impl Palettes {
     pub fn palette_collection(&self) -> &Vec<Palette> {
         &self.palette_collection
+    }
+
+    pub fn clone_palette(&self, name: &str) -> Option<Palette> {
+        self.palette_collection()
+            .iter()
+            .find(|p| p.get_name() == name)
+            .cloned()
     }
 }
