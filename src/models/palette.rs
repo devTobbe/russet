@@ -4,18 +4,19 @@ use serde::{Deserialize, Serialize};
 
 use crate::models::color::Color;
 
-
-#[derive(Debug, Serialize, Deserialize)]
+#[derive(Debug, Clone, Serialize, Deserialize)]
 pub struct Palette {
     name: String,
     colors: HashMap<String, Color>,
 }
 
-#[derive(Debug, Serialize, Deserialize)]
+#[derive(Debug, Clone, Serialize, Deserialize)]
 pub struct Palettes {
     #[serde(rename = "palette")]
     palette_collection: Vec<Palette>,
 }
+
+// TODO: Add getter for Palettes, I suppose, maybe refactor
 
 impl Palette {
     pub fn new(name: String, colors: HashMap<String, Color>) -> Palette {
@@ -48,5 +49,18 @@ impl Palette {
 
     pub fn convert_all_to_hsl(&mut self) {
         self.convert_all(|c| c.to_hsl());
+    }
+}
+
+impl Palettes {
+    pub fn palette_collection(&self) -> &Vec<Palette> {
+        &self.palette_collection
+    }
+
+    pub fn clone_palette(&self, name: &str) -> Option<Palette> {
+        self.palette_collection()
+            .iter()
+            .find(|p| p.get_name() == name)
+            .cloned()
     }
 }

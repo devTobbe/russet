@@ -9,6 +9,29 @@ pub struct Config {
     output: String,
 }
 
+// TODO: Add getters
+impl Config {
+    pub fn from(&self) -> &str {
+        &self.from
+    }
+
+    pub fn to(&self) -> &str {
+        &self.to
+    }
+
+    pub fn format(&self) -> &str {
+        &self.format
+    }
+
+    pub fn input(&self) -> &str {
+        &self.input
+    }
+
+    pub fn output(&self) -> &str {
+        &self.output
+    }
+}
+
 #[derive(Debug, Default)]
 pub struct ConfigBuilder {
     from: Option<String>,

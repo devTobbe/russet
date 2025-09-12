@@ -42,3 +42,5 @@ pub fn deserialize_palettes(s: &str) -> Result<Palettes, TomlDeError> {
 pub fn deserialize_palette(s: &str) -> Result<Palette, TomlDeError> {
     toml::from_str(s)
 }
+
+// TODO: Add functions to get palettes immediately
