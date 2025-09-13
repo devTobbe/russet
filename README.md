@@ -21,4 +21,4 @@
 - [ ] Palette Error Checking
 - [ ] Converter
 - [ ] Storage rework
-- [ ] Command handling and configuration creation
+- [x] Command handling and configuration creation
