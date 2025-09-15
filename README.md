@@ -16,9 +16,18 @@
 - [x] Color 
 - [x] Palette
 - [ ] RGB Error Checking
+- [ ] RGB Unit Tests
 - [ ] HSL Error Checking
+- [ ] HSL Unit Tests
 - [ ] Color Error Checking
+- [ ] Color Unit Tests
 - [ ] Palette Error Checking
+- [ ] Palette Unit Tests
 - [ ] Converter
+- [ ] Converter Error Checking
+- [ ] Converter Unit Tests
 - [ ] Storage rework
+- [ ] Storage Error Checking
+- [ ] Storage Unit Tests
 - [x] Command handling and configuration creation
+- [ ] Fix README
