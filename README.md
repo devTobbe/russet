@@ -16,7 +16,7 @@
 - [x] Color 
 - [x] Palette
 - [ ] RGB Error Checking
-- [ ] RGB Unit Tests
+- [x] RGB Unit Tests
 - [ ] HSL Error Checking
 - [ ] HSL Unit Tests
 - [ ] Color Error Checking

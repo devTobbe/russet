@@ -2,7 +2,6 @@ use serde::{Deserialize, Serialize};
 
 use crate::models::rgb::Rgb;
 
-
 #[derive(Debug, Clone, Copy, PartialEq, Deserialize, Serialize)]
 pub struct Hsl {
     h: f32, // 360e
@@ -45,10 +44,9 @@ impl From<Rgb> for Hsl {
         const SECTOR_SIZE: f32 = 60.0;
         const HUE_SECTOR_COUNT: f32 = 6.0;
         const MAX_CHROMA: f32 = 1.0;
-        const PERCENT_SCALE: f32 = 100.0;
 
         fn round_to_nearest_hsl(f: f32) -> f32 {
-            const PRECISION_SCALE: f32 = 10.0;
+            const PRECISION_SCALE: f32 = 100.0;
 
             ((f * PRECISION_SCALE).round()) / PRECISION_SCALE
         }
@@ -89,8 +87,8 @@ impl From<Rgb> for Hsl {
         };
 
         let h_final = h.round();
-        let s_final = round_to_nearest_hsl(s * PERCENT_SCALE);
-        let l_final = round_to_nearest_hsl(l * PERCENT_SCALE);
+        let s_final = round_to_nearest_hsl(s);
+        let l_final = round_to_nearest_hsl(l);
 
         Hsl {
             h: h_final,
