@@ -4,7 +4,6 @@ use std::error::Error;
 
 use crate::models::hsl::Hsl;
 
-
 #[derive(Debug, Clone, Copy, PartialEq, Deserialize, Serialize)]
 pub struct Rgb {
     r: u8, // 0-255
@@ -33,6 +32,7 @@ impl Rgb {
     }
 
     pub fn in_hex(&self) -> Result<String, Box<dyn Error>> {
+        // TODO: Finish this
         todo!()
     }
 
@@ -68,6 +68,7 @@ impl From<Hsl> for Rgb {
         fn scale_to_rgb(value: f32, m: f32) -> u8 {
             ((value + m) * RGB_MAX).round() as u8
         }
+
         // https://www.rapidtables.com/convert/color/hsl-to-rgb.html
         // Used this as a reference for the equation
         let h = hsl.get_hue();
@@ -115,13 +116,48 @@ impl From<Hsl> for Rgb {
 mod tests {
     use super::*;
 
+    const HEX: &str = "#001419";
+
     // TODO: Add more tests
     #[test]
-    fn test() {
-        let s = "#001419";
+    fn test_new_from_hex() {
+        let s = HEX;
         let new_from_hex = Rgb::new_from_hex(s).unwrap();
         let test = Rgb::new(0, 20, 25);
 
         assert_eq!(new_from_hex, test);
+    }
+
+    #[test]
+    fn test_get_red() {
+        let test = Rgb::new(1, 2, 3);
+        assert_eq!(test.get_red(), 1)
+    }
+
+    #[test]
+    fn test_get_green() {
+        let test = Rgb::new(1, 2, 3);
+        assert_eq!(test.get_green(), 2)
+    }
+
+    #[test]
+    fn test_get_blue() {
+        let test = Rgb::new(1, 2, 3);
+        assert_eq!(test.get_blue(), 3)
+    }
+
+    #[test]
+    fn test_display() {
+        let test = Rgb::new(1, 2, 3);
+        assert_eq!(test.to_string(), "RGB(1, 2, 3)")
+    }
+
+    #[test]
+    fn test_to_hsl() {
+        let test = Rgb::new(156, 53, 23);
+        let hsl_test: Hsl = test.into();
+        let assert_hsl = Hsl::new(14.0, 0.74, 0.35);
+
+        assert_eq!(hsl_test, assert_hsl)
     }
 }
