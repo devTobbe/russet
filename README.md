@@ -20,7 +20,7 @@
 - [ ] HSL Error Checking
 - [x] HSL Unit Tests
 - [ ] Color Error Checking
-- [ ] Color Unit Tests
+- [x] Color Unit Tests
 - [ ] Palette Error Checking
 - [ ] Palette Unit Tests
 - [ ] Converter
