@@ -18,7 +18,7 @@
 - [ ] RGB Error Checking
 - [x] RGB Unit Tests
 - [ ] HSL Error Checking
-- [ ] HSL Unit Tests
+- [x] HSL Unit Tests
 - [ ] Color Error Checking
 - [ ] Color Unit Tests
 - [ ] Palette Error Checking
