@@ -122,12 +122,12 @@ fn handle_convert(conf: Config) -> Result<(), Box<dyn Error>> {
     let mut to = input_deser
         .clone_palette(conf.to())
         .ok_or("To palette not found")?;
-    let format = ColorFormat::identify(conf.format());
+    //let format = ColorFormat::identify(conf.format());
 
     // Not the best since this will happen every time, better if it only performs apply if format
     // isn't already the right format.
-    let _ = apply_format(&format, &mut fromp);
-    let _ = apply_format(&format, &mut to);
+    //let _ = apply_format(&format, &mut fromp);
+    //let _ = apply_format(&format, &mut to);
 
     // Converter Generate Replacement Rules
     // Apply Replacements
