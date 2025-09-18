@@ -12,7 +12,7 @@ pub struct Rgb {
 }
 
 impl Rgb {
-    fn new(r: u8, g: u8, b: u8) -> Self {
+    pub fn new(r: u8, g: u8, b: u8) -> Self {
         let r = r.clamp(0, 255);
         let g = g.clamp(0, 255);
         let b = b.clamp(0, 255);
@@ -75,10 +75,6 @@ impl From<Hsl> for Rgb {
         let s = hsl.get_saturation();
         let l = hsl.get_lightness();
 
-        // Normalize, h is already fine and does not need to be normalized
-        let s = s / NORM;
-        let l = l / NORM;
-
         // Chroma
         let c = (MAX_CHROMA - (LIGHTNESS_SCALE * l - MAX_CHROMA).abs()) * s;
 
@@ -90,7 +86,7 @@ impl From<Hsl> for Rgb {
 
         // Calculates the size of the sector in which different RGB
         // mapping apply. Each sector corresponds to 60 deg segments.
-        let sector = (h / SECTOR_SIZE).floor() as i32;
+        let sector = ((h / SECTOR_SIZE).floor() as i32).rem_euclid(6);
 
         // Choose outcomes depending on sector as specified in the
         // conversion from hsl to RGB
