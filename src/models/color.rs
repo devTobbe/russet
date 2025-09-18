@@ -9,9 +9,9 @@ pub enum Color {
     Hsl(Hsl),
 }
 
-pub enum ColorFormat{
+pub enum ColorFormat {
     Rgb,
-    Hsl
+    Hsl,
 }
 
 impl Color {
@@ -30,11 +30,11 @@ impl Color {
 }
 
 impl ColorFormat {
-    pub fn identify(s : &str) -> ColorFormat {
+    pub fn identify(s: &str) -> ColorFormat {
         match s.to_lowercase().as_str() {
             "rgb" => ColorFormat::Rgb,
             "hsl" => ColorFormat::Hsl,
-            _ => todo!()
+            _ => todo!(),
         }
     }
 }

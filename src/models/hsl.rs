@@ -114,7 +114,7 @@ mod tests {
         let test = Hsl::new(30.0, 0.2, 0.3);
         assert_eq!(test.get_saturation(), 0.2)
     }
-    
+
     #[test]
     fn test_get_lightness() {
         let test = Hsl::new(30.0, 0.2, 0.3);

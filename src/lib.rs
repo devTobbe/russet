@@ -116,8 +116,12 @@ fn handle_convert(conf: Config) -> Result<(), Box<dyn Error>> {
     let input_deser = deserialize_palettes(&input)?;
 
     // TODO: Maybe implement this a bit better for a palette collection
-    let mut fromp = input_deser.clone_palette(conf.from()).ok_or("From palette not found")?;
-    let mut to = input_deser.clone_palette(conf.to()).ok_or("To palette not found")?;
+    let mut fromp = input_deser
+        .clone_palette(conf.from())
+        .ok_or("From palette not found")?;
+    let mut to = input_deser
+        .clone_palette(conf.to())
+        .ok_or("To palette not found")?;
     let format = ColorFormat::identify(conf.format());
 
     // Not the best since this will happen every time, better if it only performs apply if format
