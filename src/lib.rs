@@ -89,15 +89,13 @@ fn build_args(
         .build()
 }
 
-fn apply_format(format: &ColorFormat, col: &mut Palette) -> Result<(), Box<dyn Error>> {
+fn apply_format(format: &ColorFormat, col: &mut Palette) {
     match format {
         ColorFormat::Rgb => {
             col.convert_all_to_rgb();
-            Ok(())
         }
         ColorFormat::Hsl => {
             col.convert_all_to_hsl();
-            Ok(())
         }
     }
 }
