@@ -22,7 +22,7 @@
 - [ ] Color Error Checking
 - [x] Color Unit Tests
 - [ ] Palette Error Checking
-- [ ] Palette Unit Tests
+- [x] Palette Unit Tests
 - [ ] Converter
 - [ ] Converter Error Checking
 - [ ] Converter Unit Tests
