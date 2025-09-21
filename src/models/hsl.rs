@@ -46,6 +46,7 @@ impl From<Rgb> for Hsl {
         const MAX_CHROMA: f32 = 1.0;
 
         fn round_to_nearest_hsl(f: f32) -> f32 {
+            // NOTE: Should be enough precision..?
             const PRECISION_SCALE: f32 = 100.0;
 
             ((f * PRECISION_SCALE).round()) / PRECISION_SCALE
