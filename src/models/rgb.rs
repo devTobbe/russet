@@ -101,13 +101,13 @@ impl From<Hsl> for Rgb {
         let s = hsl.get_saturation();
         let l = hsl.get_lightness();
 
-        // Chroma
+        // Chroma, color intensity
         let c = (MAX_CHROMA - (LIGHTNESS_SCALE * l - MAX_CHROMA).abs()) * s;
 
-        // Intermediate Value
+        // Intermediate Value, Used for hue alignment
         let x = c * (MAX_CHROMA - ((h / SECTOR_SIZE).rem_euclid(2.0) - MAX_CHROMA).abs());
 
-        // Match
+        // Match, Light adjustment offset
         let m = l - c / 2.0;
 
         // Calculates the size of the sector in which different RGB

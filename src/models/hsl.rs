@@ -2,14 +2,24 @@ use serde::{Deserialize, Serialize};
 
 use crate::models::rgb::Rgb;
 
+// HSL is a f32, f32, f32
+// Uses three f32 to represent the HSL color space.
+// H represents the Hue and is a float between 0.0-360.0
+// S represents the Saturation and is a float between 0.0-1.0
+// L represents the Lightness and is a float between 0.0-1.0
 #[derive(Debug, Clone, Copy, PartialEq, Deserialize, Serialize)]
 pub struct Hsl {
-    h: f32, // 360e
+    h: f32, // 360
     s: f32, // 0.0-1.0
     l: f32, // 0.0-1.0
 }
 
 impl Hsl {
+    // f32, f32, f32 -> HSL
+    // Creates a new HSL object based on given inputs; h, s and l. Clamping h 
+    // to 360.0 and s and l respectively to 0.0-1.0
+    // Given 0.0, 0.0, 0.0 Expect: (0.0, 0.0, 0.0) 
+    // Given 210.0, 0.3, 0.6 Expect: (210.0, 0.3, 0.6) 
     pub fn new(h: f32, s: f32, l: f32) -> Self {
         let h = h.clamp(0.0, 360.0);
         let s = s.clamp(0.0, 1.0);
@@ -37,6 +47,10 @@ impl Hsl {
 }
 
 impl From<Rgb> for Hsl {
+    // RGB -> HSL
+    // Converts a RGB Color Space object to a HSL Color Space one.
+    // Given: (157, 175, 158) Expect: (123, 0.1, 0.65)
+    // Given: (255, 255, 255)  Expect: (360, 1.0, 1.0) 
     fn from(rgb: Rgb) -> Self {
         const RGB_MAX: f32 = 255.0;
         const GREEN_SECTOR_OFFSET: f32 = 2.0;
@@ -45,6 +59,11 @@ impl From<Rgb> for Hsl {
         const HUE_SECTOR_COUNT: f32 = 6.0;
         const MAX_CHROMA: f32 = 1.0;
 
+        // f32 -> f32
+        // Rounds an f32 to the nearest f32 with precision of 
+        // constant PRECISION_SCALE.
+        // Given: 0.7888 Expect: 0.79
+        // Given: 0.2316 Expect: 0.23
         fn round_to_nearest_hsl(f: f32) -> f32 {
             // NOTE: Should be enough precision..?
             const PRECISION_SCALE: f32 = 100.0;
