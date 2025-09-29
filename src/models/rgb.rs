@@ -4,6 +4,12 @@ use std::error::Error;
 
 use crate::models::hsl::Hsl;
 
+// RGB is a (u8, u8, 8)
+// Uses several u8 to represent a the RGB Color Space
+// Interpretation: 
+// r represents the amount of red in the color (0-255)
+// g represents the amount of green in the color (0-255)
+// b represents the amount of blue in the color (0-255)
 #[derive(Debug, Clone, Copy, PartialEq, Deserialize, Serialize)]
 pub struct Rgb {
     r: u8, // 0-255
@@ -12,6 +18,10 @@ pub struct Rgb {
 }
 
 impl Rgb {
+    // u8, u8, u8 -> RGB
+    // Creates a new RGB object
+    // given 255, 255, 255, Expect: (255,255,255)
+    // given 23, 45, 56, Expect: (23,45,56)
     pub fn new(r: u8, g: u8, b: u8) -> Self {
         let r = r.clamp(0, 255);
         let g = g.clamp(0, 255);
@@ -31,11 +41,19 @@ impl Rgb {
         self.b
     }
 
+    // - -> String
+    // Translates RGB to Hex Notation in the form of a string.
+    // Given 255, 255, 255, Expect: "#ffffff"
+    // Given 23, 45, 56, Expect: "#172d38"
     pub fn in_hex(&self) -> Result<String, Box<dyn Error>> {
         // TODO: Finish this
         todo!()
     }
 
+    // &Str -> RGB
+    // Creates a new RGB object with a Hex Notation in the form of a string.
+    // Given: "#ffffff" Expect: 255, 255, 255 
+    // Given: "#172d38" Expect 23, 45, 56, 
     pub fn new_from_hex(s: &str) -> Result<Rgb, Box<dyn Error>> {
         // TODO: ADD ERROR CHECKING ON LENGTH
         let s = s.trim_start_matches('#');
@@ -58,6 +76,10 @@ impl fmt::Display for Rgb {
 }
 
 impl From<Hsl> for Rgb {
+    // HSL -> RGB
+    // Converts a HSL Color Space object to a RGB Color Space object.
+    // Given: (123, 0.1, 0.65) Expect: (157, 175, 158)
+    // Given: (360, 1.0, 1.0) Expect: (255, 255, 255)
     fn from(hsl: Hsl) -> Self {
         const NORM: f32 = 100.0;
         const SECTOR_SIZE: f32 = 60.0;
@@ -65,6 +87,10 @@ impl From<Hsl> for Rgb {
         const LIGHTNESS_SCALE: f32 = 2.0;
         const MAX_CHROMA: f32 = 1.0;
 
+        // f32, f32 -> u8
+        // Scales a float together with offset 'm' onto
+        // an integer with range 0-255, rounding to nearest
+        // RBG Value.
         fn scale_to_rgb(value: f32, m: f32) -> u8 {
             ((value + m) * RGB_MAX).round() as u8
         }
