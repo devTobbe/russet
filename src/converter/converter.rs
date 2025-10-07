@@ -1,57 +1,46 @@
-struct ReplacementRule {
-    source_color: String,
-    target_color: String,
-    regex: String,
-}
-
-struct Converter {
-    replacements: Vec<ReplacementRule>,
-}
-
-impl ReplacementRule {
-    fn new(&self, source_color: String, target_color: String, regex: String) -> Self {
-        Self {
-            source_color,
-            target_color,
-            regex,
-        }
-    }
-}
-
-impl Converter {
-    fn new() {
-        todo!();
-    }
-    // FIX THIS
-    fn convert(&self, input: &str) -> String {
-        todo!()
-    }
-}
-
-// NOTE: OLD STUFF
-//use regex::{Error, Regex};
+// Problem Statement:
+// Given a String s, Palette to and from and format f, Go through the string s
+// and replace every instance of color in palette to to a corresponding color in
+// palette from in the correct given color format f
 //
-//use crate::color::palette::Palette;
+// Potential string matches
+// Problem Information:
+// This is the information that must be represented in data
+// "background: #ff0000;"
+// "color: rgb(255, 0, 0);"
+// "border-color: red;"
+// "fill: hsl(0, 100%, 50%);"
 //
-//pub fn replace_colors(
-//    from_palette: &Palette,
-//    to_palette: &Palette,
-//    content: &str,
-//) -> Result<String, Error> {
-//    let result = String::from(content);
+// Format:
+// RGB
+// RGBA
+// HEX
+// HSL
 //
-//    //   // TODO: Rewrite with new color enum
-//    //   for (name, hex) in &from_palette.colors {
-//    //       for (to_name, to_hex) in &to_palette.colors {
-//    //           if name == to_name {
-//    //               let str = format!("(?:){}", regex::escape(hex));
-//    //               let re = Regex::new(&str)?;
-//    //               // FIX: Add error handling, goes through even if regex "fails" technically
-//    //               result = re.replace_all(&result, to_hex).into_owned();
-//
-//    //               println!("Replaced: {name}: {hex} → {to_hex}");
-//    //           }
-//    //       }
-//    //   }
-//    Ok(result)
+// String s (config file)
+
+// String, Palette, Palette, Format -> String
+// Orchstrates the conversion between one color to the next, top level function.
+// fn main(s : String, to Palette, from : Palette, f : format) -> String {
+//    todo!();
+//}
+
+// Format -> List(Regex)
+// Turns a given format f to a list of regex depending on the corresponding
+// format.
+// fn format_to_regex(f : format) -> Regex {
+//    match f {
+//      RGB -> {todo!();},
+//      RGBA -> {todo!();},
+//      HSL -> {todo!();},
+//    }
+//}
+
+// String, List(Regex), Palette, Palette -> String
+// Given a string s, applies regex replace from palette to into palette from and
+// returns the resulting string.
+// fn apply_replace(lr : String s, lr : Vec<Regex>, to : Palette, from : Palette -> String {
+// for each i in lr {
+//  todo!();
+// }
 //}
