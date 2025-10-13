@@ -16,10 +16,10 @@ pub struct Hsl {
 
 impl Hsl {
     // f32, f32, f32 -> HSL
-    // Creates a new HSL object based on given inputs; h, s and l. Clamping h 
+    // Creates a new HSL object based on given inputs; h, s and l. Clamping h
     // to 360.0 and s and l respectively to 0.0-1.0
-    // Given 0.0, 0.0, 0.0 Expect: (0.0, 0.0, 0.0) 
-    // Given 210.0, 0.3, 0.6 Expect: (210.0, 0.3, 0.6) 
+    // Given 0.0, 0.0, 0.0 Expect: (0.0, 0.0, 0.0)
+    // Given 210.0, 0.3, 0.6 Expect: (210.0, 0.3, 0.6)
     pub fn new(h: f32, s: f32, l: f32) -> Self {
         let h = h.clamp(0.0, 360.0);
         let s = s.clamp(0.0, 1.0);
@@ -50,7 +50,7 @@ impl From<Rgb> for Hsl {
     // RGB -> HSL
     // Converts a RGB Color Space object to a HSL Color Space one.
     // Given: (157, 175, 158) Expect: (123, 0.1, 0.65)
-    // Given: (255, 255, 255)  Expect: (360, 1.0, 1.0) 
+    // Given: (255, 255, 255)  Expect: (360, 1.0, 1.0)
     fn from(rgb: Rgb) -> Self {
         const RGB_MAX: f32 = 255.0;
         const GREEN_SECTOR_OFFSET: f32 = 2.0;
@@ -60,7 +60,7 @@ impl From<Rgb> for Hsl {
         const MAX_CHROMA: f32 = 1.0;
 
         // f32 -> f32
-        // Rounds an f32 to the nearest f32 with precision of 
+        // Rounds an f32 to the nearest f32 with precision of
         // constant PRECISION_SCALE.
         // Given: 0.7888 Expect: 0.79
         // Given: 0.2316 Expect: 0.23

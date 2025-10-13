@@ -6,7 +6,7 @@ use crate::models::hsl::Hsl;
 
 // RGB is a (u8, u8, 8)
 // Uses several u8 to represent a the RGB Color Space
-// Interpretation: 
+// Interpretation:
 // r represents the amount of red in the color (0-255)
 // g represents the amount of green in the color (0-255)
 // b represents the amount of blue in the color (0-255)
@@ -52,8 +52,8 @@ impl Rgb {
 
     // &Str -> RGB
     // Creates a new RGB object with a Hex Notation in the form of a string.
-    // Given: "#ffffff" Expect: 255, 255, 255 
-    // Given: "#172d38" Expect 23, 45, 56, 
+    // Given: "#ffffff" Expect: 255, 255, 255
+    // Given: "#172d38" Expect 23, 45, 56,
     pub fn new_from_hex(s: &str) -> Result<Rgb, Box<dyn Error>> {
         // TODO: ADD ERROR CHECKING ON LENGTH
         let s = s.trim_start_matches('#');
