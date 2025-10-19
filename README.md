@@ -31,4 +31,4 @@
 - [ ] Storage Unit Tests
 - [x] Command handling and configuration creation
 - [ ] Fix README
-- [ ] Plan for next versoin
+- [ ] Plan for next version
