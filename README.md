@@ -32,3 +32,4 @@
 - [x] Command handling and configuration creation
 - [ ] Fix README
 - [ ] Plan for next version
+- [ ] Remake Color
