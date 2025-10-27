@@ -56,3 +56,11 @@
 // "color: rgb(255, 0, 0);"
 // "border-color: red;"
 // "fill: hsl(0, 100%, 50%);"
+//
+// FLOW OF CONTROL:
+// 1. PARSE FILE
+// 2. FIND COLORS
+// 3. PARSE EACH COLOR
+// 4. REPLACE COLORS
+// 5. GENERATE NEW FILE
+//
