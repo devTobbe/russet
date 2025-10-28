@@ -45,13 +45,13 @@
 // }
 //}
 //
-// Input Data: 
+// Input Data:
 // "background: #ff0000;"
 // "color: rgb(255, 0, 0);"
 // "border-color: red;"
 // "fill: hsl(0, 100%, 50%);"
-// 
-// Ouput Data (Different): 
+//
+// Ouput Data (Different):
 // "background: #ff0000;"
 // "color: rgb(255, 0, 0);"
 // "border-color: red;"
