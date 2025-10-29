@@ -13,7 +13,7 @@
 //
 // Format:
 // RGB
-// RGBA
+// RGBA (Later)
 // HEX
 // HSL
 //
@@ -64,3 +64,4 @@
 // 4. REPLACE COLORS
 // 5. GENERATE NEW FILE
 //
+//Proceed with REGEX plan, maybe refactor later on
