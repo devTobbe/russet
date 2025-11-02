@@ -58,10 +58,23 @@
 // "fill: hsl(0, 100%, 50%);"
 //
 // FLOW OF CONTROL:
-// 1. PARSE FILE
-// 2. FIND COLORS
+// 1. PARSE FILE - Storage.rs
+// 2. FIND COLORS - Use Regex
 // 3. PARSE EACH COLOR
 // 4. REPLACE COLORS
 // 5. GENERATE NEW FILE
 //
 //Proceed with REGEX plan, maybe refactor later on
+
+use std::error::Error;
+
+use crate::{models::config::Config, storage::read_file};
+
+// Config -> _
+// Takes a configuration conf file and produces a new file according to the
+// configuration.
+fn conversion(conf: Config) -> Result<(), Box<dyn Error>> {
+    let in_file = conf.input().to_string();
+    let content = read_file(&in_file)?;
+    todo!();
+}
