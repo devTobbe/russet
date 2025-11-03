@@ -68,13 +68,28 @@
 
 use std::error::Error;
 
-use crate::{models::config::Config, storage::read_file};
+use regex::Regex;
+
+use crate::{
+    models::{color::ColorFormat, config::Config},
+    storage::read_file,
+};
 
 // Config -> _
 // Takes a configuration conf file and produces a new file according to the
 // configuration.
 fn conversion(conf: Config) -> Result<(), Box<dyn Error>> {
-    let in_file = conf.input().to_string();
-    let content = read_file(&in_file)?;
+    // Line up data
+    let content = read_file(conf.output())?;
+    let format: ColorFormat = conf.format().into();
+
     todo!();
+}
+
+fn get_regex(format: ColorFormat) -> String {
+    match format {
+        ColorFormat::Rgb => {"".to_string()},
+        ColorFormat::Hsl => {"".to_string()},
+        _ => {todo!()},
+    }
 }
