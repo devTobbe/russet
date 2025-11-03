@@ -41,14 +41,25 @@ impl Color {
     }
 }
 
-pub fn identify(s: &str) -> ColorFormat {
-    match s.to_lowercase().as_str() {
-        "rgb" => ColorFormat::Rgb,
-        "hsl" => ColorFormat::Hsl,
-        _ => todo!(),
+impl From<String> for ColorFormat {
+    fn from(s: String) -> ColorFormat {
+        match s.to_lowercase().as_str() {
+            "rgb" => ColorFormat::Rgb,
+            "hsl" => ColorFormat::Hsl,
+            _ => todo!(),
+        }
     }
 }
-impl ColorFormat {}
+
+impl From<&str> for ColorFormat {
+    fn from(s: &str) -> ColorFormat {
+        match s.to_lowercase().as_str() {
+            "rgb" => ColorFormat::Rgb,
+            "hsl" => ColorFormat::Hsl,
+            _ => todo!(),
+        }
+    }
+}
 
 #[cfg(test)]
 mod tests {
