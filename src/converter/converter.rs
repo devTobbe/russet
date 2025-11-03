@@ -86,10 +86,14 @@ fn conversion(conf: Config) -> Result<(), Box<dyn Error>> {
     todo!();
 }
 
-fn get_regex(format: ColorFormat) -> String {
-    match format {
-        ColorFormat::Rgb => {"".to_string()},
-        ColorFormat::Hsl => {"".to_string()},
-        _ => {todo!()},
+// ColorFormat -> String
+// Takes a colorformat format and returns a Regex String.
+fn get_regex(f: ColorFormat) -> String {
+    match f {
+        ColorFormat::Rgb => "".to_string(),
+        ColorFormat::Hsl => "".to_string(),
+        _ => {
+            todo!()
+        }
     }
 }
