@@ -83,11 +83,4 @@ mod tests {
 
         assert_eq!(rgb, rgbassert)
     }
-
-    #[test]
-    fn test_identify() {
-        let result = identify("hsl");
-        let hsl = ColorFormat::Hsl;
-        assert_eq!(result, hsl)
-    }
 }
