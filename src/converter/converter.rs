@@ -82,6 +82,13 @@ fn conversion(conf: Config) -> Result<(), Box<dyn Error>> {
     // Line up data
     let content = read_file(conf.output())?;
     let format: ColorFormat = conf.format().into();
+    let re_str = get_regex(format);
+    // NOTE: CREATE REGEX
+    let re = Regex::new(&re_str)?;
+    //       Fetch From and To Palette
+    //       Loop through from colors and create captures
+    //       for each corresponding to color, replace it
+    //       Save to new file
 
     todo!();
 }
