@@ -89,9 +89,12 @@ fn conversion(conf: Config) -> Result<(), Box<dyn Error>> {
 // ColorFormat -> String
 // Takes a colorformat format and returns a Regex String.
 fn get_regex(f: ColorFormat) -> String {
+    let rgb_pattern = r"rgba?\(\s*(?:\d{1,3}%?\s*,\s*){2}\d{1,3}%?(?:\s*,\s*(?:0|1|0?\.\d+))?\s*\)";
+    let hsl_pattern = r"hsla?\(\s*\d{1,3}(?:\.\d+)?(?:deg|rad|grad|turn)?\s*,\s*\d{1,3}%\s*,\s*\d{1,3}%\s*(?:,\s*(?:0|1|0?\.\d+))?\s*\)";
+
     match f {
-        ColorFormat::Rgb => "".to_string(),
-        ColorFormat::Hsl => "".to_string(),
+        ColorFormat::Rgb => rgb_pattern.to_string(),
+        ColorFormat::Hsl => hsl_pattern.to_string(),
         _ => {
             todo!()
         }
