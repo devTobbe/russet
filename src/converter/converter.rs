@@ -85,6 +85,7 @@ fn conversion(conf: Config) -> Result<(), Box<dyn Error>> {
     let re_str = get_regex(format);
     // NOTE: CREATE REGEX
     let re = Regex::new(&re_str)?;
+    //       TODO:
     //       Fetch From and To Palette
     //       Loop through from colors and create captures
     //       for each corresponding to color, replace it
@@ -96,6 +97,7 @@ fn conversion(conf: Config) -> Result<(), Box<dyn Error>> {
 // ColorFormat -> String
 // Takes a colorformat format and returns a Regex String.
 fn get_regex(f: ColorFormat) -> String {
+    // TODO: Add more patterns later and break down RGB pattern maybe?
     let rgb_pattern = r"rgba?\(\s*(?:\d{1,3}%?\s*,\s*){2}\d{1,3}%?(?:\s*,\s*(?:0|1|0?\.\d+))?\s*\)";
     let hsl_pattern = r"hsla?\(\s*\d{1,3}(?:\.\d+)?(?:deg|rad|grad|turn)?\s*,\s*\d{1,3}%\s*,\s*\d{1,3}%\s*(?:,\s*(?:0|1|0?\.\d+))?\s*\)";
 
