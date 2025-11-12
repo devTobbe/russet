@@ -61,6 +61,10 @@ impl Palettes {
             .find(|p| p.name() == name)
             .cloned()
     }
+
+    pub fn get_palette(&self, name: &str) -> Option<&Palette> {
+        self.palette_collection.iter().find(|p| p.name == name)
+    }
 }
 
 #[cfg(test)]
