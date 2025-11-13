@@ -40,8 +40,6 @@ pub fn deserialize_palette(s: &str) -> Result<Palette, toml::de::Error> {
     toml::from_str(s)
 }
 
-// TODO: Add functions to get palettes immediately
-
 pub fn get_palette_from_name(s: &str, name: &str) -> Result<Palette, Box<dyn Error>> {
     let palettes = deserialize_palettes(s)?;
     let palette = palettes.get_palette(name).ok_or_else(|| {
