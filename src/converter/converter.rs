@@ -72,7 +72,7 @@ use regex::Regex;
 
 use crate::{
     models::{color::ColorFormat, config::Config},
-    storage::read_file,
+    storage::{self, read_file},
 };
 
 // Config -> _
@@ -80,11 +80,13 @@ use crate::{
 // configuration.
 fn conversion(conf: Config) -> Result<(), Box<dyn Error>> {
     // Line up data
-    let content = read_file(conf.output())?;
+    let content = read_file(conf.input())?;
     let format: ColorFormat = conf.format().into();
     let re_str = get_regex(format);
     // NOTE: CREATE REGEX
     let re = Regex::new(&re_str)?;
+    let to = storage::get_palette_from_name("theme.test", conf.to())?;
+    let from = storage::get_palette_from_name("theme.test", conf.from())?;
     //       TODO:
     //       Fetch From and To Palette
     //       Loop through from colors and create captures
