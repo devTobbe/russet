@@ -87,8 +87,7 @@ fn conversion(conf: Config) -> Result<(), Box<dyn Error>> {
     let re = Regex::new(&re_str)?;
     let to = storage::get_palette_from_name("theme.test", conf.to())?;
     let from = storage::get_palette_from_name("theme.test", conf.from())?;
-    //       TODO:
-    //       Fetch From and To Palette
+
     //       Loop through from colors and create captures
     //       for each corresponding to color, replace it
     //       Save to new file
