@@ -82,11 +82,18 @@ fn conversion(conf: Config) -> Result<(), Box<dyn Error>> {
     // Line up data
     let content = read_file(conf.input())?;
     let format: ColorFormat = conf.format().into();
-    let re_str = get_regex(format);
-    // NOTE: CREATE REGEX
+    let re_str = get_regex(&format);
+
     let re = Regex::new(&re_str)?;
-    let to = storage::get_palette_from_name("theme.test", conf.to())?;
-    let from = storage::get_palette_from_name("theme.test", conf.from())?;
+    let mut from = storage::get_palette_from_name("theme.test", conf.from())?;
+    let mut to = storage::get_palette_from_name("theme.test", conf.to())?;
+    set_color_format(&mut from, &format);
+    set_color_format(&mut to, &format);
+
+    for from_color in from.colors(){
+        for to_color in to.colors(){
+        }
+    }
 
     //       Loop through from colors and create captures
     //       for each corresponding to color, replace it
@@ -97,7 +104,7 @@ fn conversion(conf: Config) -> Result<(), Box<dyn Error>> {
 
 // ColorFormat -> String
 // Takes a colorformat format and returns a Regex String.
-fn get_regex(f: ColorFormat) -> String {
+fn get_regex(f: &ColorFormat) -> String {
     // TODO: Add more patterns later and break down RGB pattern maybe?
     let rgb_pattern = r"rgba?\(\s*(?:\d{1,3}%?\s*,\s*){2}\d{1,3}%?(?:\s*,\s*(?:0|1|0?\.\d+))?\s*\)";
     let hsl_pattern = r"hsla?\(\s*\d{1,3}(?:\.\d+)?(?:deg|rad|grad|turn)?\s*,\s*\d{1,3}%\s*,\s*\d{1,3}%\s*(?:,\s*(?:0|1|0?\.\d+))?\s*\)";
@@ -111,7 +118,9 @@ fn get_regex(f: ColorFormat) -> String {
     }
 }
 
-fn set_color_format(p: &mut Palette, f: ColorFormat) {
+// &mut Palette, ColorFormat -> _
+// Takes a ColorFormat and converts all colors in a palette matching the format.
+fn set_color_format(p: &mut Palette, f: &ColorFormat) {
     match f {
         ColorFormat::Rgb => p.convert_all_to_rgb(),
         ColorFormat::Hsl => p.convert_all_to_hsl(),
