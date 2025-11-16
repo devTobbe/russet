@@ -71,7 +71,7 @@ use std::error::Error;
 use regex::Regex;
 
 use crate::{
-    models::{color::ColorFormat, config::Config},
+    models::{color::ColorFormat, config::Config, palette::Palette},
     storage::{self, read_file},
 };
 
@@ -105,6 +105,16 @@ fn get_regex(f: ColorFormat) -> String {
     match f {
         ColorFormat::Rgb => rgb_pattern.to_string(),
         ColorFormat::Hsl => hsl_pattern.to_string(),
+        _ => {
+            todo!()
+        }
+    }
+}
+
+fn set_color_format(p: &mut Palette, f: ColorFormat) {
+    match f {
+        ColorFormat::Rgb => p.convert_all_to_rgb(),
+        ColorFormat::Hsl => p.convert_all_to_hsl(),
         _ => {
             todo!()
         }
