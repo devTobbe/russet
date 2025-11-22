@@ -90,6 +90,12 @@ fn conversion(conf: Config) -> Result<(), Box<dyn Error>> {
     set_color_format(&mut from, &format);
     set_color_format(&mut to, &format);
 
+    // TEMP COMMENT
+    // Iterate throught each from color, check if there is a regex match and then
+    // IF there is, replace that color with the corresponding to color.
+    // NOTE: Might not need two for each, since I can just match the key for the
+    // name... Probably...
+    // REGEX REPLACE FOR EACH
     for from_color in from.colors(){
         for to_color in to.colors(){
         }
