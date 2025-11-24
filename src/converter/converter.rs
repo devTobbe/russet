@@ -80,24 +80,25 @@ use crate::{
 // configuration.
 fn conversion(conf: Config) -> Result<(), Box<dyn Error>> {
     // Line up data
-    let content = read_file(conf.input())?;
+    let mut content = read_file(conf.input())?;
     let format: ColorFormat = conf.format().into();
     let re_str = get_regex(&format);
 
-    let re = Regex::new(&re_str)?;
     let mut from = storage::get_palette_from_name("theme.test", conf.from())?;
     let mut to = storage::get_palette_from_name("theme.test", conf.to())?;
     set_color_format(&mut from, &format);
     set_color_format(&mut to, &format);
 
-    // TEMP COMMENT
-    // Iterate throught each from color, check if there is a regex match and then
-    // IF there is, replace that color with the corresponding to color.
-    // NOTE: Might not need two for each, since I can just match the key for the
-    // name... Probably...
-    // REGEX REPLACE FOR EACH
     for from_color in from.colors(){
         for to_color in to.colors(){
+            if from_color.0 == to_color.0 {
+                // Test with regex::escape
+            let fc : String = from_color.1.into();
+            let tc : String = to_color.1.into();
+            let esc = regex::escape(&fc);
+            let re = Regex::new(&esc)?;
+            content = re.replace_all(&content, to_color.0).to_string();
+            }
         }
     }
 
