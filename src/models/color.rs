@@ -3,13 +3,6 @@ use serde::{Deserialize, Serialize};
 use crate::models::hsl::Hsl;
 use crate::models::rgb::Rgb;
 
-// REWRITE:
-// Colors contains one of each
-// RGB
-// RGBA
-// HEX
-// HSL
-//
 // Represents a color and contains it's various representations
 
 #[derive(Debug, Clone, Deserialize, Serialize, PartialEq)]
