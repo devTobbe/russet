@@ -1,3 +1,5 @@
+use std::fmt;
+
 use serde::{Deserialize, Serialize};
 
 use crate::models::hsl::Hsl;
@@ -34,23 +36,23 @@ impl Color {
     }
 }
 
-impl From<Color> for String {
-    fn from(c: Color) -> String {
-        match c {
-            Color::Rgb(rgb) => format!(
+impl fmt::Display for Color {
+    fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result {
+        match self {
+            Color::Rgb(rgb) => write!(
+                f,
                 "rgb({},{},{})",
                 rgb.get_red(),
                 rgb.get_green(),
                 rgb.get_blue()
-            )
-            .to_string(),
-            Color::Hsl(hsl) => format!(
+            ),
+            Color::Hsl(hsl) => write!(
+                f,
                 "hsl({},{},{})",
                 hsl.get_hue(),
                 hsl.get_saturation(),
                 hsl.get_lightness()
-            )
-            .to_string(),
+            ),
         }
     }
 }
