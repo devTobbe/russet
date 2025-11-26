@@ -34,6 +34,27 @@ impl Color {
     }
 }
 
+impl From<Color> for String {
+    fn from(c: Color) -> String {
+        match c {
+            Color::Rgb(rgb) => format!(
+                "rgb({},{},{})",
+                rgb.get_red(),
+                rgb.get_green(),
+                rgb.get_blue()
+            )
+            .to_string(),
+            Color::Hsl(hsl) => format!(
+                "hsl({},{},{})",
+                hsl.get_hue(),
+                hsl.get_saturation(),
+                hsl.get_lightness()
+            )
+            .to_string(),
+        }
+    }
+}
+
 impl From<String> for ColorFormat {
     fn from(s: String) -> ColorFormat {
         match s.to_lowercase().as_str() {
