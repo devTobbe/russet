@@ -72,7 +72,7 @@ use regex::Regex;
 
 use crate::{
     models::{color::ColorFormat, config::Config, palette::Palette},
-    storage::{self, read_file},
+    storage::{self, read_file, write_file},
 };
 
 // Config -> _
@@ -89,24 +89,23 @@ fn conversion(conf: Config) -> Result<(), Box<dyn Error>> {
     set_color_format(&mut from, &format);
     set_color_format(&mut to, &format);
 
-    for from_color in from.colors(){
-        for to_color in to.colors(){
+    //       Loop through from colors and create captures
+    for from_color in from.colors() {
+        for to_color in to.colors() {
             if from_color.0 == to_color.0 {
-                // Test with regex::escape
-            let fc : String = from_color.1.into();
-            let tc : String = to_color.1.into();
-            let esc = regex::escape(&fc);
-            let re = Regex::new(&esc)?;
-            content = re.replace_all(&content, to_color.0).to_string();
+                let fc: String = from_color.1.to_string();
+                let tc: String = to_color.1.to_string();
+                let esc = regex::escape(&fc);
+                let re = Regex::new(&esc)?;
+                //       for each corresponding to color, replace it
+                content = re.replace_all(&content, tc).to_string();
             }
         }
     }
 
-    //       Loop through from colors and create captures
-    //       for each corresponding to color, replace it
     //       Save to new file
-
-    todo!();
+    write_file(conf.output(), &content)?;
+    Ok(())
 }
 
 // ColorFormat -> String
